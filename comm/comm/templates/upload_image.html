@@ -1,0 +1,9 @@
+<title>上传照片</title>
+
+<form action=''  method='POST' enctype="multipart/form-data">
+{% csrf_token %}
+<p>照片介绍：<input type="text" name="title"></p>
+照片：<input type="file" name="image">
+<br />
+<input type="submit" value='上传'>
+</form>

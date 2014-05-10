@@ -1,0 +1,28 @@
+
+<html>
+<head>
+<title>班级</title>
+</head>
+<body>
+{% if user.is_authenticated %}
+	{% if user.is_active %}
+		{% if perms.comm.add_classt %}
+			<p><a href="/create_classt">新建班级</a>|
+			<a href="/manage_classt">班级管理</a></p>
+		{%endif%}
+	{% endif %}
+{% endif %}
+
+{% for c in classt %}
+<p>{{c.name}}|<a href="/on_classt/{{c.id}}">进入班级</a></p>
+
+{% endfor %}
+
+
+
+ 
+</body>
+
+
+
+</html>

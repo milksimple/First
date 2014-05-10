@@ -1,0 +1,19 @@
+<meta charset='utf-8'>
+<p>{{article.title}}</p>
+<p>{{article.content}}</p>
+{% for r in reply %}
+<p>{{r.content}}|用户：{{user.username}}</p>
+{% endfor %}
+
+{% if user.is_authenticated %}
+    {% if user.is_active %}
+		{% if user.username in alluser %}
+<form action="" method="POST">
+{% csrf_token %}
+<textarea rows="10" cols="40" name="reply">
+</textarea>
+<input type="submit" value="评论">
+</form>
+		{% endif %}
+	{% endif %}
+{% endif %}

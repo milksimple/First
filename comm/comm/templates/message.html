@@ -1,0 +1,11 @@
+<meta charset='utf8'>
+{% if user.is_authenticated %}
+    {% if user.is_active %}
+{% for classt in allclasst %}
+	<p><a href='/{{classt.id}}/message'>{{classt.name}}公告</a></p>
+{% endfor %}
+	{% endif %}
+	{% if perms.comm %}
+	<a href='/send_message'>给班级发公告</a>
+	{% endif %}
+{% endif %}

@@ -1,0 +1,15 @@
+
+<html>
+<body>
+<form action="" method="POST">
+{% csrf_token %}
+<table>
+{{form}}
+</table>
+<input type="submit" value="创建班级" />
+</form>
+{% for u in alluser %}
+<li>{{u.username}}</li>
+{% endfor %}
+</body>
+</html>

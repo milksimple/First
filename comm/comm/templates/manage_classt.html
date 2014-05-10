@@ -1,0 +1,18 @@
+<html>
+<body>
+{% if user.is_authenticated %}
+    {% if user.is_active %}
+        {% if perms.comm.change_classt and perms.comm.delete_classt %}
+			{% for c in allclasst %}
+				<p>
+				{{c.name}}|<a href="/manage_member/{{c.name}}">成员管理</a>|
+							<a href="/delete_classt/{{c.name}}">删除班级</a>
+				</p>
+			{% endfor %}
+		{% endif %}
+	{% endif %}
+{% endif %}
+
+
+<body>
+</html>

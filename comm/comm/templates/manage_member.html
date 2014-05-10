@@ -1,0 +1,5 @@
+{% for g in group %}
+	{% for user in g.user_set.all %}
+		<li>{{user}}</li>
+	{% endfor %}
+{% endfor %}

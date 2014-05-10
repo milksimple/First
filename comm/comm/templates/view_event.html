@@ -1,0 +1,11 @@
+<title>班级活动</title>
+<a href="/classt/{{classt.id}}/create_event">创建班级活动</a>
+
+{% for e in event %}
+<li>活动名称：{{e.name}}<a href="/classt/{{classt.id}}/event/{{e.id}}/upload">上传照片</a></li>
+<p>活动内容：{{e.content}}</p>
+{% for im in e.eventimage_set.all %}
+<p>精彩瞬间：<img src="/media/{{im.image}}" width="300" height="260"   /></p>
+<p>图片说明:{{im.title}}</p>
+{% endfor %}
+{% endfor %}
