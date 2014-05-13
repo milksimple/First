@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首页</title>
+<style type="text/css">
+div.col-md-3 p.side {margin-bottom:50px;}
+p#newclass {font-size:120%}
+p#newevent {font-size:120%}
+span.more {float:right;font-size:80%}
+</style>
+</head>
+
+<!-- 最新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap core CSS 
+  注意：此文件跟随官网最新版本更新，随时会有改变。建议使用下面v3.0.3版本的CDN链接！
+ -->
+<link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Hi，如果你要在自己的网站上引入bootstrap样式文件的话，请使用当前最新版本v3.0.3的CDN链接，页面加载速度会更快！
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+-->
+
+<!-- Documentation extras -->
+<link href="../docs-assets/css/docs.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/highlight.js/7.3/styles/github.min.css" rel="stylesheet">
+
+
+<body>
+<div class="container">
+<div class="row">
+<h2 align="center">{{classt.name}}</h2>
+</div>
+<div class="row">
+<div class="col-md-9">
+<ul class="nav nav-tabs">
+  <li><a href="/on_classt/{{classt.id}}">班级讨论</a></li>
+  <li class="active"><a href="#">班级公告</a></li>
+  <li><a href="/classt/{{classt.id}}/event">班级活动</a></li>
+</ul>
+{% for message in allmessage %}
+<li>{{message.title}}</li>
+<p>{{message.content}}</p>
+{% endfor %}
+</div>
+
+<div class="col-md-3">
+<h3>班级成员</h3>
+<ul>
+{% for u in user %}
+<li>
+{{u}}
+</li>
+{% endfor %}
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+

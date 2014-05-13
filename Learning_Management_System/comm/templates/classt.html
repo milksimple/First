@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>首页</title>
+<style type="text/css">
+div.col-md-3 p.side {margin-bottom:50px;}
+p#newclass {font-size:120%}
+p#newevent {font-size:120%}
+span.more {float:right;font-size:80%}
+</style>
+</head>
+
+<!-- 最新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap core CSS 
+  注意：此文件跟随官网最新版本更新，随时会有改变。建议使用下面v3.0.3版本的CDN链接！
+ -->
+<link href="../dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Hi，如果你要在自己的网站上引入bootstrap样式文件的话，请使用当前最新版本v3.0.3的CDN链接，页面加载速>度会更快！
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+-->
+
+<!-- Documentation extras -->
+<link href="../docs-assets/css/docs.css" rel="stylesheet">
+<link href="http://cdn.bootcss.com/highlight.js/7.3/styles/github.min.css" rel="stylesheet">
+
+
+<body>
+<div class="container">
+
+
+<div class="row">
+<h1 align="center">一起学Python</h1>
+<hr />
+</div>
+
+<div class="row">
+<div class ="col-md-4">
+</div
+>
+<div  class="col-md-4" align="center">
+<span class="navi">
+<a href="/home"  style="text-decoration:none"><button type="button" class="btn btn-primary">主页</button></a>
+<a href="/classt"  style="text-decoration:none"><button type="button" class="btn btn-primary">班级</button></a>
+<a href="/message"  style="text-decoration:none"><button type="button" class="btn btn-primary">消息</button></a>
+<a href="/manage"  style="text-decoration:none"><button type="button" class="btn btn-primary">管理</button></a>
+</span>
+</div>
+
+<div class="col-md-4">
+
+<p class="side" align="right">
+欢迎您:
+{% if user.is_authenticated %}
+        {{user.username}}<a href="/logout">注销</a>
+{% else %}
+        游客
+        <a href="/login">登录</a>
+        <a href="/register">注册</a>
+{% endif %}<br />
+</p>
+</div>
+</div>
+</br />
+<div class="row">
+<div class="col-md-2">
+<p id="newevent">最新活动:<span class="more"><a href="/view_event"><small>>>>更多</small></a></span></p>
+<table>
+<tbody>
+{% for e in eventLi %}
+<tr>
+<td>
+<a href="/on_event/{{e.id}}">{{e.name}}</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+<div class="col-md-8">
+<h4>班级:</h4>
+<table class="table table-hover">
+<tbody>
+{% for c in classt %}
+<tr>
+<td>
+{{c.name}}|<a href="/on_classt/{{c.id}}">进入班级</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+
+<div class="col-md-2">
+<p id="newclass">最新班级：
+<span class="more"><a href="/classt"><small>>>>更多</small></a></span>
+<br />
+<table>
+<tbody>
+{% for c in classtLi %}
+<tr>
+<td>
+<a href="/on_classt/{{c.id}}">{{c.name}}</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</p>
+
+
+</div>
+
+</div>
+
+
+<div class="row" align="center">
+Copyright W3School.com.cn
+</div>
+
+
+</div>
+</body>
+</html>
+

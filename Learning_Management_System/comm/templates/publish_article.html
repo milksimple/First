@@ -1,0 +1,15 @@
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script>
+        tinymce.init({selector:'textarea'});
+</script>
+<html>
+<body>
+<form action="" method="POST">
+{% csrf_token %}
+<table>
+{{form}}
+</table>
+<input type="submit" method="发表">
+</form>
+</body>
+</html>

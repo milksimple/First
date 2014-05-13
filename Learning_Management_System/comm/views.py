@@ -1,5 +1,6 @@
 #coding:utf8
 import os
+
 from django.shortcuts import render_to_response,render,redirect
 from django.template import RequestContext
 from comm.models import Article
@@ -12,7 +13,23 @@ from django.contrib.auth import logout
 
 def home(request):
 	user = request.user
-	return render_to_response('home.html',{'user':user},context_instance=RequestContext(request))
+	article = Article.objects.all()
+	i = len(article) - 1
+	articleLi = []
+	while i >= 0:
+		articleLi.append(article[i])
+		i -= 1
+	classt = Group.objects.all()
+	classtLi = []
+	for i in range(0,5):
+		classtLi.append(classt[i])
+	event = Event.objects.all()
+	eventLi = []
+	for i in range(0,len(event)):
+		eventLi.append(event[i])
+
+	return render_to_response('home.html',{'user':user,'articleLi':articleLi,'classtLi':classtLi,'eventLi':eventLi},\
+	context_instance=RequestContext(request))
 
 def logout_view(request):
 	logout(request)
@@ -21,14 +38,29 @@ def logout_view(request):
 def profiles(request):
 	return redirect('/home')
 
-
 def classt(request):
 	classt = Group.objects.all()
-	return render_to_response('classt.html',{'classt':classt},context_instance=RequestContext(request))
+	classtLi = []
+        for i in range(0,5):
+                classtLi.append(classt[i])
+	event = Event.objects.all()
+        eventLi = []
+        for i in range(0,len(event)):
+                eventLi.append(event[i])
+	return render_to_response('classt.html',{'classt':classt,'eventLi':eventLi,'classtLi':classtLi},\
+	context_instance=RequestContext(request))
 
 def message(request):
 	allclasst = Group.objects.all()
-	return render_to_response('message.html',{'allclasst':allclasst},\
+	classtLi = []
+        for i in range(0,5):
+                classtLi.append(allclasst[i])
+        event = Event.objects.all()
+        eventLi = []
+        for i in range(0,len(event)):
+                eventLi.append(event[i])
+
+	return render_to_response('message.html',{'allclasst':allclasst,'classtLi':classtLi,'eventLi':eventLi},\
 	context_instance=RequestContext(request))
 
 
@@ -46,8 +78,8 @@ def create_event(request,classtId):
 def view_event(request,classtId):
 	classt = Group.objects.get(id=int(classtId))
 	event = classt.event_set.all()
-	
-	return render_to_response('view_event.html',{'event':event,'classt':classt,},\
+	user = classt.user_set.all()
+	return render_to_response('view_event.html',{'event':event,'classt':classt,'user':user},\
 	context_instance=RequestContext(request))
 
 
@@ -55,7 +87,8 @@ def upload_image(request,classtId,eventId):
 	event = Event.objects.get(id=int(eventId))
 	if request.method == "POST":
 		print request.FILES['image']
-		n = EventImage.objects.create(title = request.POST['title'],image = request.FILES['image'],event=event)
+		n = EventImage.objects.create(title = request.POST['title'],\
+		image = request.FILES['image'],event=event)
 		return redirect('/classt/'+classtId+'/event')
 	return render_to_response('upload_image.html',{},context_instance=RequestContext(request))
 
@@ -64,7 +97,9 @@ def upload_image(request,classtId,eventId):
 def view_message(request,classtId):
 	classt = Group.objects.get(id=int(classtId))
 	allmessage = classt.message_set.all()
-	return render_to_response('view_message.html',{'allmessage':allmessage},context_instance=RequestContext(request))
+	user = classt.user_set.all()
+	return render_to_response('view_message.html',{'allmessage':allmessage,'classt':classt,'user':user},\
+	context_instance=RequestContext(request))
 
 def send_message(request):
 	form = MessageForm()
@@ -92,7 +127,7 @@ def send_message(request):
 
 def manage(request):
 	user = request.user
-	form = PasswordChangeForm(user)
+	form = MimaForm(user)
 	if request.method == 'POST':
 		n = PasswordChangeForm(user,request.POST)
 		if n.is_valid():
@@ -177,4 +212,12 @@ def view_article(request,classtId,articleId):
 	'user':user,'reply':reply,'article':article},\
 	context_instance=RequestContext(request))
 
+def hot_article(request,articleId):
+	article = Article.objects.get(id=int(articleId))
+	return render_to_response('hot_article.html',{'article':article},\
+	context_instance=RequestContext(request))
 
+def on_event(request,eventId):
+	event = Event.objects.get(id=int(eventId))
+	return render_to_response('on_event.html',{'event':event},\
+        context_instance=RequestContext(request))

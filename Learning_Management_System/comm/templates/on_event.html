@@ -1,0 +1,50 @@
+<link href="http://css.tuanimg.com/global1.0.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="http://z0.tuanimg.com/v2/core/css/zhelib1.1.3.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="http://z0.tuanimg.com/v2/ju/css/index1.1.1.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="http://z0.tuanimg.com/v2/patch/css/patch34065.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="http://z0.tuanimg.com/v2/patch/css/patch36552.css" media="screen" rel="stylesheet" type="text/css"/>
+
+<!-- 最新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<html>
+<head>
+<title>活动</title>
+<style type="text/css">
+.pointbanner{background: url(http://p13.tuanimg.com/upload/dynamic_banner/image/173/2a6e503c3dc2f20b03d1ef8b1886c131.jpg) top center no-repeat #0d2645;height:260px}
+</style>
+</head>
+
+<body>
+<div class="row">
+<h3>活动名称：{{event.name}}</h3>
+<h4>活动内容：{{event.content}}</h4>
+<div>
+<div class="area row">
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+<div class="dealbox" data-current_view="index" data-url_name="" data-sort="" data-page="">
+
+{% for im in event.eventimage_set.all %}
+<div class="dealad">
+<img src="/media/{{im.image}}" style="width:190px;display: inline;">
+<p>图片说明:{{im.title}}</p>
+</div>    
+{%endfor%}
+</div>
+</div>
+<div class="col-md-2">
+</div>
+</body>
+</html>
+

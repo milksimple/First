@@ -43,6 +43,14 @@ class EventForm(ModelForm):
 	class Meta:
 		model = Event
 		# exclude = ('group',)
+
+class MimaForm(PasswordChangeForm):
+	old_password = forms.CharField(label=("旧密码"),
+                                   widget=forms.PasswordInput)
+	new_password1 = forms.CharField(label=("新密码"),
+                                    widget=forms.PasswordInput)
+	new_password2 = forms.CharField(label=("确认使用相同的密码"),
+                                    widget=forms.PasswordInput)
 '''
 class EventImageForm(ModelForm):
 	class Meta:

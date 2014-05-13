@@ -1,0 +1,78 @@
+<!-- 最新 Bootstrap 核心 CSS 文件 -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+
+<!-- 可选的Bootstrap主题文件（一般不用引入） -->
+<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<html>
+<head>
+<title>首页</title>
+<style type="text/css">
+div#header {width:1180px}
+div#container{width:1180px;}
+div#menu {height:1000px;width:200px;float:left;}
+div#content {height:1000px;width:780px;float:center;}
+div#rmenu {height:1000px;width:200px;float:right;}
+div#footer {clear:both;text-align:center;}
+h1.title{color:blue;}
+h1 {margin-bottom:0;}
+h2 {margin-bottom:0;font-size:18px;}
+ul {margin:0;}
+li {list-style:none;}
+</style>
+</head>
+
+<body background="/media/photos/eg_bg_06.gif"  >
+
+<div id="container">
+
+<div id="header">
+<h1 class="title" align="center">一起学Python</h1>
+<hr />
+</div>
+
+<div id="menu">
+<h2>Menu</h2>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+</ul>
+</div>
+
+<div id="rmenu">
+<ul>
+欢迎您: 
+{% if user.is_authenticated %}
+	{{user.username}}<a href="/logout">注销</a>
+{% else %}
+	游客
+	<a href="/login">登录</a>
+	<a href="/register">注册</a>
+{% endif %}
+
+</ul>
+</div>
+
+<div id="content">
+<p align="center">
+<a href="/home"  style="text-decoration:none"><button type="button" class="btn btn-primary">主页</button></a>
+<a href="/classt"  style="text-decoration:none"><button type="button" class="btn btn-primary">班级</button></a>
+<a href="/message"  style="text-decoration:none"><button type="button" class="btn btn-primary">消息</button></a>
+<a href="/manage"  style="text-decoration:none"><button type="button" class="btn btn-primary">管理</button></a>
+</p>
+</div>
+
+<div id="footer">Copyright W3School.com.cn</div>
+
+</div>
+
+</body>
+</html>
+

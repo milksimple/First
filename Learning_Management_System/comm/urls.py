@@ -32,4 +32,7 @@ urlpatterns = patterns('',
 	url(r'^classt/(\d+)/event/(\d+)/upload','comm.views.upload_image'),
 	url(r'^media/(?P<path>.*)$','django.views.static.serve',\
 		{'document_root': settings.MEDIA_ROOT, 'show_indexes':True}),
+	url(r'^article/(\d+)$','comm.views.hot_article'),
+	url(r'^on_event/(\d+)$','comm.views.on_event'),
+
 )

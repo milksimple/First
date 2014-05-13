@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'comm',
+    'pagination',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -47,6 +48,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pagination.middleware.PaginationMiddleware',
 )
 
 ROOT_URLCONF = 'comm.urls'
@@ -90,4 +92,7 @@ EMAIL_HOST_USER = '470042560@qq.com'    #邮箱账号
 EMAIL_HOST_PASSWORD = 'lion*57228'     #邮箱密码
 
 
-
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.request",
+    "django.contrib.auth.context_processors.auth",
+)
